@@ -10,4 +10,4 @@ fi
 
 cd /opt/mcserver
 
-java -Xmx2G -jar mcserver.jar nogui
+java -Xms${SPIGOT_HEAP_INIT} -Xmx${SPIGOT_HEAP_MAX} -jar mcserver.jar "$@"

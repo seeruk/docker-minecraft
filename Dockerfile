@@ -1,32 +1,34 @@
-FROM seeruk/docker-java:oracle-java8
-MAINTAINER Elliot Wright <elliot@elliotwright.co>
+FROM seeruk/java:openjdk-java8
+MAINTAINER Elliot Wright <hello@elliotdwright.com>
 
-RUN \
-  apt-get update && \
-  apt-get install -y git-core && \
-  rm -rf /var/lib/apt/lists/* && \
-  useradd -d /opt/mcserver -u 1000 -m -s /bin/bash mcserver && \
-  mkdir -p /opt/mcserver && \
-  mkdir -p /opt/mcbuild && \
-  cd /opt/mcbuild && \
-  wget https://hub.spigotmc.org/jenkins/job/BuildTools/45/artifact/target/BuildTools.jar && \
-  java -d64 -jar BuildTools.jar
+ENV JENKINS https://hub.spigotmc.org/jenkins
+ENV SPIGOT_VERSION 1.10
+ENV SPIGOT_HEAP_INIT 2G
+ENV SPIGOT_HEAP_MAX 2G
 
-COPY ./scripts/start.sh /opt/mcbuild
+COPY ./provisioning/docker-entrypoint.sh /opt/mcbuild/docker-entrypoint.sh
 
-RUN \
-  chown -R mcserver: /opt/mcbuild && \
-  chown -R mcserver: /opt/mcserver && \
-  chmod +x /opt/mcbuild/start.sh
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y git-core wget \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd -d /opt/mcserver -u 1000 -m -s /bin/bash mcserver \
+    && mkdir -p /opt/mcserver \
+    && mkdir -p /opt/mcbuild \
+    && cd /opt/mcbuild \
+    && wget ${JENKINS}/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar \
+    && java -d64 -jar BuildTools.jar --rev ${SPIGOT_VERSION} \
+    && chown -R mcserver: /opt/mcbuild \
+    && chown -R mcserver: /opt/mcserver \
+    && chmod +x /opt/mcbuild/docker-entrypoint.sh
 
 USER mcserver
 
-ENV MEMORY 2G
-
 EXPOSE 25565
 
-VOLUME [ "/opt/mcserver" ]
-
+VOLUME /opt/mcserver
 WORKDIR /opt/mcserver
 
-CMD [ "/opt/mcbuild/start.sh" ]
+ENTRYPOINT ["/opt/mcbuild/docker-entrypoint.sh"]
+
+CMD ["nogui"]
