@@ -2,7 +2,7 @@ FROM seeruk/java:openjdk-java8
 MAINTAINER Elliot Wright <hello@elliotdwright.com>
 
 ENV JENKINS https://hub.spigotmc.org/jenkins
-ENV SPIGOT_VERSION 1.11
+ENV SPIGOT_VERSION latest
 ENV SPIGOT_HEAP_INIT 2G
 ENV SPIGOT_HEAP_MAX 2G
 
