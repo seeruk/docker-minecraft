@@ -1,4 +1,4 @@
-FROM seeruk/java:openjdk-java8
+FROM seeruk/java:openjdk-11-jdk
 MAINTAINER Elliot Wright <hello@elliotdwright.com>
 
 ENV JENKINS https://hub.spigotmc.org/jenkins
@@ -17,7 +17,7 @@ RUN set -x \
     && mkdir -p /opt/mcbuild \
     && cd /opt/mcbuild \
     && wget ${JENKINS}/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar \
-    && java -d64 -jar BuildTools.jar --rev ${SPIGOT_VERSION} \
+    && java -jar BuildTools.jar --rev ${SPIGOT_VERSION} \
     && chown -R mcserver: /opt/mcbuild \
     && chown -R mcserver: /opt/mcserver \
     && chmod +x /opt/mcbuild/docker-entrypoint.sh
