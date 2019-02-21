@@ -3,7 +3,6 @@ MAINTAINER Elliot Wright <hello@elliotdwright.com>
 
 ENV JENKINS https://hub.spigotmc.org/jenkins
 ENV SPIGOT_VERSION latest
-ENV SPIGOT_HEAP_INIT 2G
 ENV SPIGOT_HEAP_MAX 2G
 
 COPY ./provisioning/docker-entrypoint.sh /opt/mcbuild/docker-entrypoint.sh
