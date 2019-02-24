@@ -10,4 +10,4 @@ fi
 
 cd /opt/mcserver
 
-java -XX:+UnlockExperimentalVMOptions -XX:+UseZGC -Xmx${SPIGOT_HEAP_MAX} -jar mcserver.jar "$@"
+java -XX:+UnlockExperimentalVMOptions -XX:+UseZGC -Xmx${SPIGOT_HEAP_MAX} -jar mcserver.jar nogui --noconsole "$@"
