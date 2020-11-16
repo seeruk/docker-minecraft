@@ -1,22 +1,14 @@
-FROM seeruk/java:openjdk-11-jdk
+FROM openjdk:15.0.1-slim-buster
 MAINTAINER Elliot Wright <hello@elliotdwright.com>
 
-ENV JENKINS https://hub.spigotmc.org/jenkins
-ENV SPIGOT_VERSION latest
-ENV SPIGOT_HEAP_MAX 2G
+ENV MINECRAFT_HEAP_MAX 4G
 
 COPY ./provisioning/docker-entrypoint.sh /opt/mcbuild/docker-entrypoint.sh
 
 RUN set -x \
-    && apt-get update \
-    && apt-get install -y git-core wget \
-    && rm -rf /var/lib/apt/lists/* \
     && useradd -d /opt/mcserver -u 1000 -m -s /bin/bash mcserver \
     && mkdir -p /opt/mcserver \
     && mkdir -p /opt/mcbuild \
-    && cd /opt/mcbuild \
-    && wget ${JENKINS}/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar \
-    && java -jar BuildTools.jar --rev ${SPIGOT_VERSION} \
     && chown -R mcserver: /opt/mcbuild \
     && chown -R mcserver: /opt/mcserver \
     && chmod +x /opt/mcbuild/docker-entrypoint.sh
