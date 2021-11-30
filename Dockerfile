@@ -1,4 +1,4 @@
-FROM openjdk:16-slim-buster
+FROM openjdk:17-slim-buster
 MAINTAINER Elliot Wright <hello@elliotdwright.com>
 
 ENV MINECRAFT_HEAP_MAX 4G
