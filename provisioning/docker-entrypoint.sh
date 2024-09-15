@@ -16,6 +16,7 @@ exec java \
   -XX:+AlwaysActAsServerClassMachine \
   -XX:+AlwaysPreTouch \
   -XX:+DisableExplicitGC \
+  -XX:+EnableDynamicAgentLoading \
   -XX:+OptimizeStringConcat \
   -XX:+ParallelRefProcEnabled \
   -XX:+PerfDisableSharedMem \
