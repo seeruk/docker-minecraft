@@ -1,4 +1,4 @@
-FROM openjdk:21-slim-buster
+FROM bitnami/java:21-debian-12
 
 ENV MINECRAFT_HEAP_MAX=8G
 
