@@ -20,7 +20,6 @@ exec java \
   -XX:+ParallelRefProcEnabled \
   -XX:+PerfDisableSharedMem \
   -XX:+UseNUMA \
-  -XX:+UseParallelGC \
   -XX:+UseStringDeduplication \
   -XX:+UseThreadPriorities \
   -XX:+UseVectorCmov \
