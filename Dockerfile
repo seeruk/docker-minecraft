@@ -1,7 +1,6 @@
-FROM openjdk:17-slim-buster
-MAINTAINER Elliot Wright <hello@elliotdwright.com>
+FROM openjdk:21-slim-buster
 
-ENV MINECRAFT_HEAP_MAX 4G
+ENV MINECRAFT_HEAP_MAX=8G
 
 COPY ./provisioning/docker-entrypoint.sh /opt/mcbuild/docker-entrypoint.sh
 

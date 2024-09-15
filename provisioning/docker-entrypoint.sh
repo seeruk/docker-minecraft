@@ -6,4 +6,22 @@ fi
 
 cd /opt/mcserver
 
-exec java -XX:+UnlockExperimentalVMOptions -XX:+UseZGC -Xmx${MINECRAFT_HEAP_MAX} -jar mcserver.jar "$@"
+exec java \
+  --add-modules jdk.incubator.vector \
+  -Xms${MINECRAFT_HEAP_MAX} \
+  -Xmx${MINECRAFT_HEAP_MAX} \
+  -XX:+UnlockExperimentalVMOptions \
+  -XX:+UseZGC \
+  -XX:-ZUncommit \
+  -XX:+AlwaysActAsServerClassMachine \
+  -XX:+AlwaysPreTouch \
+  -XX:+DisableExplicitGC \
+  -XX:+OptimizeStringConcat \
+  -XX:+ParallelRefProcEnabled \
+  -XX:+PerfDisableSharedMem \
+  -XX:+UseNUMA \
+  -XX:+UseParallelGC \
+  -XX:+UseStringDeduplication \
+  -XX:+UseThreadPriorities \
+  -XX:+UseVectorCmov \
+  -jar mcserver.jar "$@"
