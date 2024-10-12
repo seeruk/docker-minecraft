@@ -12,7 +12,7 @@ exec java \
   -Xmx${MINECRAFT_HEAP_MAX} \
   -XX:+UnlockExperimentalVMOptions \
   -XX:+UseZGC \
-  -XX:-ZUncommit \
+  -XX:+ZGenerational \
   -XX:+AlwaysActAsServerClassMachine \
   -XX:+AlwaysPreTouch \
   -XX:+DisableExplicitGC \
