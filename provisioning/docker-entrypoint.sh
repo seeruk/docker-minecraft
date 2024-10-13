@@ -8,8 +8,8 @@ cd /opt/mcserver
 
 exec java \
   --add-modules jdk.incubator.vector \
-  -Xms${MINECRAFT_HEAP_MAX} \
-  -Xmx${MINECRAFT_HEAP_MAX} \
+  -XX:InitialRAMPercentage=${JVM_INIT_RAM_PERCENT:-75} \
+  -XX:MaxRAMPercentage=${JVM_MAX_RAM_PERCENT:-75} \
   -XX:+UnlockExperimentalVMOptions \
   -XX:+UseZGC \
   -XX:+ZGenerational \

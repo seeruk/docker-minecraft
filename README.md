@@ -5,9 +5,11 @@ Docker Image packaging for Minecraft. This image uses the official slim Java Bus
 Usage
 -----
 
-The following environment variables are available to allow you to configure how the container will run, and various options within it:
+Make sure to set a memory limit on your container, and this image will obey this memory limit for 
+overall memory usage. By default, we set a 50/50 split for heap size and everything else.
 
-* **MINECRAFT_HEAP_MAX**: Allows you to configure the maximum JVM heap size. (Default: 4G)
+* `JVM_INIT_RAM_PERCENT`: Initial memory allocated for the heap at startup (default: 75)
+* `JVM_MAX_RAM_PERCENT`: Maximum memory allocated for the heap (default: 75)
 
 License
 -------
