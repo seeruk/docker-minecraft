@@ -8,8 +8,8 @@ cd /opt/mcserver
 
 exec java \
   --add-modules jdk.incubator.vector \
-  -XX:InitialRAMPercentage=${JVM_INIT_RAM_PERCENT:-75} \
-  -XX:MaxRAMPercentage=${JVM_MAX_RAM_PERCENT:-75} \
+  -XX:InitialRAMPercentage=${JVM_INIT_RAM_PERCENT:-50} \
+  -XX:MaxRAMPercentage=${JVM_MAX_RAM_PERCENT:-50} \
   -XX:+UnlockExperimentalVMOptions \
   -XX:+UseZGC \
   -XX:+ZGenerational \
